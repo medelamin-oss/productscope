@@ -325,7 +325,6 @@ export function AnalysisDisplay({
                   body: JSON.stringify({
                     description: result.product_description,
                     headlines: result.ad_headlines,
-                    hooks: result.marketing_hooks,
                     strengths: result.strengths,
                     targetAudience: result.target_audience,
                     language: project.language,

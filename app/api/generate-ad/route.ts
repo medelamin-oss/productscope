@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const { description, headlines, hooks, strengths, targetAudience, language } = await request.json();
+    const { description, headlines, strengths, targetAudience, language } = await request.json();
 
     const lang = language === "ar"
       ? "اكتب النص الإعلاني باللغة العربية الفصحى."
