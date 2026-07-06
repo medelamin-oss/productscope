@@ -279,8 +279,8 @@ export function AnalysisDisplay({
             )}
 
             {result.weaknesses && result.weaknesses.length > 0 && (
-              <Card className="p-6 border-l-4 border-l-red-400">
-                <h2 className="font-display font-semibold text-red-700 mb-3">الزوايا التسويقية</h2>
+              <Card className="p-6 border-l-4 border-l-brand-primary">
+                <h2 className="font-display font-semibold text-brand-primary mb-3">الزوايا التسويقية</h2>
                 <ul className="space-y-1.5">
                   {result.weaknesses.map((w: string, i: number) => (
                     <li key={i} className="text-sm text-muted flex items-start gap-2">
