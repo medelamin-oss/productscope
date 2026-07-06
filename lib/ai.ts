@@ -18,7 +18,7 @@ const SYSTEM_PROMPT = `You are an expert e-commerce and dropshipping product ana
 - ad_headlines: array of 5-10 attention-grabbing ad headlines
 - marketing_hooks: array of 5 emotional or curiosity-driven hooks
 - strengths: array of 3-5 product strengths
-- weaknesses: array of 3-5 product weaknesses
+- weaknesses: array of 3-5 marketing angles (ways to market the product positively, reframing any perceived flaws as opportunities)
 - target_audience: detailed ideal customer profile
 - main_objection: the single biggest customer objection
 - objection_response: compelling counter-argument addressing the objection`
