@@ -1,0 +1,78 @@
+◇ injected env (12) from .env.local // tip: ⌘ enable debugging { debug: true }
+
+Running 29 tests using 2 workers
+
+◇ injected env (0) from .env.local // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (0) from .env.local // tip: ⌘ override existing { override: true }
+  ok  1 tests\auth.spec.ts:6:7 › M2 — Auth UI › Login page renders with correct design (8.6s)
+=== REQUESTS ===
+{
+  method: 'POST',
+  url: 'https://sandbox-checkout-service.paddle.com/checkout',
+  body: '{"data":{"items":[{"product_id":null}],"settings":{"display_mode":"overlay","theme":"light","language_code":"en"}}}'
+}
+
+=== CHECKOUT SERVICE RESPONSES ===
+NO RESPONSES CAPTURED FROM CHECKOUT SERVICE
+
+=== FAILURES ===
+https://sandbox-checkout-service.paddle.com/checkout FAILED: net::ERR_FAILED
+
+=== PAGE TEXT ===
+Something went wrong
+Please try again later. If the issue persists, you can contact our support team using the button below.
+Contact support
+  ok  2 tests\e2e-checkout-test.spec.ts:4:7 › Paddle checkout investigation › capture API error from Paddle checkout page (10.8s)
+  ok  3 tests\auth.spec.ts:33:7 › M2 — Auth UI › Signup page renders with correct design (5.2s)
+  ok  5 tests\auth.spec.ts:50:7 › M2 — Auth UI › Login form validates empty fields (8.0s)
+  ok  6 tests\auth.spec.ts:57:7 › M2 — Auth UI › Navigation between login and signup (13.4s)
+  ok  7 tests\auth.spec.ts:68:7 › M2 — Auth UI › Unauthenticated user is redirected to login from dashboard (3.6s)
+  ok  4 tests\e2e-full-flow.spec.ts:30:7 › E2E — Full flow with real Supabase + OpenRouter › signup → analyze product → verify DB state and trial_used (44.4s)
+  ok  8 tests\e2e-subscribe.spec.ts:28:7 › E2E — Subscribe flow redirects to Paddle checkout › navigate to subscribe and redirect to Paddle checkout (37.2s)
+  ok  9 tests\e2e-full-flow.spec.ts:113:7 › E2E — Full flow with real Supabase + OpenRouter › user can log in with existing credentials (24.9s)
+  ok 10 tests\m3-dashboard.spec.ts:6:7 › M3 — Dashboard & Navigation › Unauthenticated user redirected from /dashboard to /login (6.7s)
+  ok 11 tests\m4-analysis.spec.ts:6:7 › M4 — Analysis Input & API › New analysis page redirects to login when unauthenticated (5.7s)
+  ok 12 tests\m3-dashboard.spec.ts:12:7 › M3 — Dashboard & Navigation › Unauthenticated user redirected from /dashboard/subscribe to /login (6.2s)
+  ok 13 tests\m4-analysis.spec.ts:12:7 › M4 — Analysis Input & API › Login page renders with all form elements (7.3s)
+  ok 14 tests\m3-dashboard.spec.ts:18:7 › M3 — Dashboard & Navigation › Landing page exists and has correct structure (7.7s)
+  ok 15 tests\m4-analysis.spec.ts:19:7 › M4 — Analysis Input & API › Signup page renders with all form elements (9.1s)
+  ok 16 tests\m3-dashboard.spec.ts:29:7 › M3 — Dashboard & Navigation › Auth pages use correct design tokens (6.7s)
+  ok 17 tests\m4-analysis.spec.ts:26:7 › M4 — Analysis Input & API › Project result page redirects to login when unauthenticated (7.2s)
+  ok 18 tests\m3-dashboard.spec.ts:43:7 › M3 — Dashboard & Navigation › Signup page has password validation (10.1s)
+  ok 19 tests\m4-analysis.spec.ts:32:7 › M4 — Analysis Input & API › Subscribe page redirects to login when unauthenticated (8.5s)
+  ok 20 tests\m3-dashboard.spec.ts:53:7 › M3 — Dashboard & Navigation › Auth form elements are accessible (13.8s)
+  ok 22 tests\m5-results.spec.ts:6:7 › M5 — Results & PDF Export › Unauthenticated user redirected from project page to login (13.3s)
+  ok 23 tests\m5-results.spec.ts:12:7 › M5 — Results & PDF Export › Login page renders with brand design tokens (9.1s)
+  ok 24 tests\m5-results.spec.ts:25:7 › M5 — Results & PDF Export › All protected routes redirect unauthenticated users (15.5s)
+  x  21 tests\m4-analysis.spec.ts:38:7 › M4 — Analysis Input & API › All middleware-protected routes redirect to login (31.2s)
+  ok 25 tests\m5-results.spec.ts:40:7 › M5 — Results & PDF Export › Landing page has no console errors (1.9s)
+◇ injected env (0) from .env.local // tip: ⌘ enable debugging { debug: true }
+  ok 26 tests\m6-projects.spec.ts:43:7 › M6 — Project Management (Rename & Delete) › API returns 401 when unauthenticated (2.3s)
+  ok 27 tests\m6-projects.spec.ts:53:7 › M6 — Project Management (Rename & Delete) › API returns 401 for invalid data (442ms)
+  ok 28 tests\m6-projects.spec.ts:60:7 › M6 — Project Management (Rename & Delete) › Rename project via UI (14.0s)
+  ok 29 tests\m6-projects.spec.ts:88:7 › M6 — Project Management (Rename & Delete) › Delete project via UI (5.7s)
+
+
+  1) tests\m4-analysis.spec.ts:38:7 › M4 — Analysis Input & API › All middleware-protected routes redirect to login 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/dashboard/subscribe", waiting until "networkidle"
+
+
+      46 |
+      47 |     for (const route of routes) {
+    > 48 |       await page.goto(`${BASE}${route}`, { waitUntil: "networkidle" });
+         |                  ^
+      49 |       await page.waitForURL("**/login");
+      50 |       await expect(page.locator("h1")).toHaveText("Welcome back");
+      51 |     }
+        at C:\Users\MOHAMED\المشروع\tests\m4-analysis.spec.ts:48:18
+
+    Error Context: test-results\m4-analysis-M4-—-Analysis--0527f-ed-routes-redirect-to-login\error-context.md
+
+  1 failed
+    tests\m4-analysis.spec.ts:38:7 › M4 — Analysis Input & API › All middleware-protected routes redirect to login 
+  28 passed (3.8m)

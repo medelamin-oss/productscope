@@ -1,0 +1,43 @@
+◇ injected env (12) from .env.local // tip: ⌘ override existing { override: true }
+
+Running 29 tests using 2 workers
+
+◇ injected env (0) from .env.local // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env.local // tip: ⌁ auth for agents [www.vestauth.com]
+[WebServer]  ⚠ Port 3000 is in use, trying 3001 instead.
+=== REQUESTS ===
+{
+  method: 'POST',
+  url: 'https://sandbox-checkout-service.paddle.com/checkout',
+  body: '{"data":{"items":[{"product_id":null}],"settings":{"display_mode":"overlay","theme":"light","language_code":"en"}}}'
+}
+
+=== CHECKOUT SERVICE RESPONSES ===
+NO RESPONSES CAPTURED FROM CHECKOUT SERVICE
+
+=== FAILURES ===
+https://sandbox-checkout-service.paddle.com/checkout FAILED: net::ERR_FAILED
+
+=== PAGE TEXT ===
+Something went wrong
+Please try again later. If the issue persists, you can contact our support team using the button below.
+Contact support
+  ok  2 tests\e2e-checkout-test.spec.ts:4:7 › Paddle checkout investigation › capture API error from Paddle checkout page (7.7s)
+  x   1 tests\auth.spec.ts:6:7 › M2 — Auth UI › Login page renders with correct design (8.0s)
+◇ injected env (0) from .env.local // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+  x   4 tests\auth.spec.ts:33:7 › M2 — Auth UI › Signup page renders with correct design (5.2s)
+◇ injected env (0) from .env.local // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+  x   5 tests\auth.spec.ts:50:7 › M2 — Auth UI › Login form validates empty fields (30.1s)
+◇ injected env (0) from .env.local // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+  x   6 tests\auth.spec.ts:57:7 › M2 — Auth UI › Navigation between login and signup (30.1s)
+◇ injected env (0) from .env.local // tip: ⌁ auth for agents [www.vestauth.com]
+  x   7 tests\auth.spec.ts:68:7 › M2 — Auth UI › Unauthenticated user is redirected to login from dashboard (6.1s)
+◇ injected env (0) from .env.local // tip: ⌘ enable debugging { debug: true }
+  x   8 tests\e2e-subscribe.spec.ts:28:7 › E2E — Subscribe flow redirects to Paddle checkout › navigate to subscribe and redirect to Paddle checkout (2.0m)
+◇ injected env (0) from .env.local // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+  x   9 tests\m3-dashboard.spec.ts:6:7 › M3 — Dashboard & Navigation › Unauthenticated user redirected from /dashboard to /login (7.6s)
+◇ injected env (0) from .env.local // tip: ⌘ enable debugging { debug: true }
+  x  10 tests\m3-dashboard.spec.ts:12:7 › M3 — Dashboard & Navigation › Unauthenticated user redirected from /dashboard/subscribe to /login (7.2s)
+◇ injected env (0) from .env.local // tip: ⌘ enable debugging { debug: true }
+  x  11 tests\m3-dashboard.spec.ts:18:7 › M3 — Dashboard & Navigation › Landing page exists and has correct structure (1.9s)
+◇ injected env (0) from .env.local // tip: ◈ secrets for agents [www.dotenvx.com]

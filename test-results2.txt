@@ -1,0 +1,54 @@
+◇ injected env (12) from .env.local // tip: ⌘ suppress logs { quiet: true }
+
+Running 29 tests using 2 workers
+
+◇ injected env (0) from .env.local // tip: ⌘ override existing { override: true }
+◇ injected env (0) from .env.local // tip: ⌘ suppress logs { quiet: true }
+  ok  2 tests\auth.spec.ts:6:7 › M2 — Auth UI › Login page renders with correct design (9.0s)
+=== REQUESTS ===
+{
+  method: 'POST',
+  url: 'https://sandbox-checkout-service.paddle.com/checkout',
+  body: '{"data":{"items":[{"product_id":null}],"settings":{"display_mode":"overlay","theme":"light","language_code":"en"}}}'
+}
+
+=== CHECKOUT SERVICE RESPONSES ===
+NO RESPONSES CAPTURED FROM CHECKOUT SERVICE
+
+=== FAILURES ===
+https://sandbox-checkout-service.paddle.com/checkout FAILED: net::ERR_FAILED
+
+=== PAGE TEXT ===
+Something went wrong
+Please try again later. If the issue persists, you can contact our support team using the button below.
+Contact support
+  ok  1 tests\e2e-checkout-test.spec.ts:4:7 › Paddle checkout investigation › capture API error from Paddle checkout page (12.1s)
+  ok  3 tests\auth.spec.ts:33:7 › M2 — Auth UI › Signup page renders with correct design (3.6s)
+  ok  5 tests\auth.spec.ts:50:7 › M2 — Auth UI › Login form validates empty fields (2.2s)
+  ok  6 tests\auth.spec.ts:57:7 › M2 — Auth UI › Navigation between login and signup (3.1s)
+  ok  7 tests\auth.spec.ts:68:7 › M2 — Auth UI › Unauthenticated user is redirected to login from dashboard (2.1s)
+  ok  8 tests\e2e-subscribe.spec.ts:28:7 › E2E — Subscribe flow redirects to Paddle checkout › navigate to subscribe and redirect to Paddle checkout (16.4s)
+  ok  9 tests\m3-dashboard.spec.ts:6:7 › M3 — Dashboard & Navigation › Unauthenticated user redirected from /dashboard to /login (2.6s)
+  ok  4 tests\e2e-full-flow.spec.ts:30:7 › E2E — Full flow with real Supabase + OpenRouter › signup → analyze product → verify DB state and trial_used (27.9s)
+  ok 10 tests\m3-dashboard.spec.ts:12:7 › M3 — Dashboard & Navigation › Unauthenticated user redirected from /dashboard/subscribe to /login (2.0s)
+  ok 12 tests\m3-dashboard.spec.ts:18:7 › M3 — Dashboard & Navigation › Landing page exists and has correct structure (1.6s)
+  ok 11 tests\e2e-full-flow.spec.ts:113:7 › E2E — Full flow with real Supabase + OpenRouter › user can log in with existing credentials (3.4s)
+  ok 13 tests\m3-dashboard.spec.ts:29:7 › M3 — Dashboard & Navigation › Auth pages use correct design tokens (2.5s)
+  ok 14 tests\m4-analysis.spec.ts:6:7 › M4 — Analysis Input & API › New analysis page redirects to login when unauthenticated (2.8s)
+  ok 15 tests\m3-dashboard.spec.ts:43:7 › M3 — Dashboard & Navigation › Signup page has password validation (3.4s)
+  ok 16 tests\m4-analysis.spec.ts:12:7 › M4 — Analysis Input & API › Login page renders with all form elements (4.7s)
+  ok 18 tests\m4-analysis.spec.ts:19:7 › M4 — Analysis Input & API › Signup page renders with all form elements (4.1s)
+  ok 17 tests\m3-dashboard.spec.ts:53:7 › M3 — Dashboard & Navigation › Auth form elements are accessible (8.0s)
+  ok 19 tests\m4-analysis.spec.ts:26:7 › M4 — Analysis Input & API › Project result page redirects to login when unauthenticated (3.6s)
+  ok 20 tests\m5-results.spec.ts:6:7 › M5 — Results & PDF Export › Unauthenticated user redirected from project page to login (2.8s)
+  ok 21 tests\m4-analysis.spec.ts:32:7 › M4 — Analysis Input & API › Subscribe page redirects to login when unauthenticated (4.0s)
+  ok 22 tests\m5-results.spec.ts:12:7 › M5 — Results & PDF Export › Login page renders with brand design tokens (3.8s)
+  ok 24 tests\m5-results.spec.ts:25:7 › M5 — Results & PDF Export › All protected routes redirect unauthenticated users (11.7s)
+  ok 23 tests\m4-analysis.spec.ts:38:7 › M4 — Analysis Input & API › All middleware-protected routes redirect to login (18.8s)
+  ok 25 tests\m5-results.spec.ts:40:7 › M5 — Results & PDF Export › Landing page has no console errors (6.8s)
+  ok 26 tests\m6-projects.spec.ts:43:7 › M6 — Project Management (Rename & Delete) › API returns 401 when unauthenticated (1.7s)
+  ok 27 tests\m6-projects.spec.ts:53:7 › M6 — Project Management (Rename & Delete) › API returns 401 for invalid data (472ms)
+  ok 28 tests\m6-projects.spec.ts:60:7 › M6 — Project Management (Rename & Delete) › Rename project via UI (11.3s)
+  ok 29 tests\m6-projects.spec.ts:88:7 › M6 — Project Management (Rename & Delete) › Delete project via UI (8.2s)
+
+  29 passed (2.1m)

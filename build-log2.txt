@@ -1,0 +1,45 @@
+ ⚠ Linting is disabled.
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/18) ...
+   Generating static pages (4/18) 
+   Generating static pages (8/18) 
+   Generating static pages (13/18) 
+ ✓ Generating static pages (18/18)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    857 B            97 kB
+├ ○ /_not-found                          873 B          88.4 kB
+├ ƒ /api/analyze                         0 B                0 B
+├ ƒ /api/analyze/status                  0 B                0 B
+├ ƒ /api/create-checkout                 0 B                0 B
+├ ○ /api/debug-paddle                    0 B                0 B
+├ ƒ /api/paddle/simulate-subscription    0 B                0 B
+├ ƒ /api/paddle/webhook                  0 B                0 B
+├ ƒ /api/projects/[id]                   0 B                0 B
+├ ƒ /auth/callback                       0 B                0 B
+├ ƒ /dashboard                           857 B            97 kB
+├ ƒ /dashboard/billing                   3.2 kB          165 kB
+├ ƒ /dashboard/project/[id]              135 kB          231 kB
+├ ƒ /dashboard/project/new               3.64 kB         105 kB
+├ ƒ /dashboard/subscribe                 3.12 kB        99.2 kB
+├ ○ /login                               1.85 kB         178 kB
+└ ○ /signup                              1.9 kB          178 kB
++ First Load JS shared by all            87.5 kB
+  ├ chunks/117-304c7699b6f39f79.js       31.7 kB
+  ├ chunks/fd9d1056-2ad972bbe7acdb46.js  53.6 kB
+  └ other shared chunks (total)          2.11 kB
+
+
+ƒ Middleware                             83.2 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

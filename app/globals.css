@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #1A56DB;
+  --color-primary-deep: #0C1B33;
+  --color-accent: #F59E0B;
+  --color-surface: #F8FAFC;
+  --color-text: #0F172A;
+  --color-text-muted: #64748B;
+  --color-success: #059669;
+  --color-border: #E2E8F0;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes ring-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.analysis-ring {
+  position: relative;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, #1A56DB, #F59E0B, transparent);
+  mask: radial-gradient(circle, transparent 55%, black 56%);
+  -webkit-mask: radial-gradient(circle, transparent 55%, black 56%);
+  animation: ring-glow 3s ease-in-out infinite;
+}
