@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { RefreshCw, ExternalLink, ChevronRight, Pencil, Trash2, Check, X, Loader2 } from "lucide-react";
+import { RefreshCw, ExternalLink, ChevronRight, Pencil, Trash2, Check, X, Loader2, FileText, Copy, CheckCheck } from "lucide-react";
 import { Card } from "@/components/ui";
 import { PdfExportButton } from "@/components/pdf-export-button";
 import { formatDate } from "@/lib/utils";
@@ -24,6 +24,9 @@ export function AnalysisDisplay({
   const [renameSaving, setRenameSaving] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [adCopy, setAdCopy] = useState<string | null>(null);
+  const [adLoading, setAdLoading] = useState(false);
+  const [adCopied, setAdCopied] = useState(false);
   const mounted = useRef(true);
 
   useEffect(() => {
@@ -263,7 +266,7 @@ export function AnalysisDisplay({
           <div className="grid gap-6 md:grid-cols-2">
             {result.strengths && result.strengths.length > 0 && (
               <Card className="p-6 border-l-4 border-l-green-500">
-                <h2 className="font-display font-semibold text-green-700 mb-3">Strengths</h2>
+                <h2 className="font-display font-semibold text-green-700 mb-3">نقاط قوة المنتج</h2>
                 <ul className="space-y-1.5">
                   {result.strengths.map((s: string, i: number) => (
                     <li key={i} className="text-sm text-muted flex items-start gap-2">
@@ -277,11 +280,11 @@ export function AnalysisDisplay({
 
             {result.weaknesses && result.weaknesses.length > 0 && (
               <Card className="p-6 border-l-4 border-l-red-400">
-                <h2 className="font-display font-semibold text-red-700 mb-3">Weaknesses</h2>
+                <h2 className="font-display font-semibold text-red-700 mb-3">الزوايا التسويقية</h2>
                 <ul className="space-y-1.5">
                   {result.weaknesses.map((w: string, i: number) => (
                     <li key={i} className="text-sm text-muted flex items-start gap-2">
-                      <span className="text-red-500 font-bold mt-0.5">−</span>
+                      <span className="text-brand-primary font-bold mt-0.5">→</span>
                       {w}
                     </li>
                   ))}
@@ -310,6 +313,72 @@ export function AnalysisDisplay({
               <p className="text-sm leading-relaxed text-muted">{result.objection_response}</p>
             </Card>
           )}
+
+          <button
+            onClick={async () => {
+              setAdLoading(true);
+              setAdCopy(null);
+              try {
+                const res = await fetch("/api/generate-ad", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    description: result.product_description,
+                    headlines: result.ad_headlines,
+                    hooks: result.marketing_hooks,
+                    strengths: result.strengths,
+                    targetAudience: result.target_audience,
+                    language: project.language,
+                  }),
+                });
+                const data = await res.json();
+                if (data.ad) setAdCopy(data.ad);
+                else setAdCopy("Failed to generate ad copy.");
+              } catch {
+                setAdCopy("Network error. Try again.");
+              } finally {
+                setAdLoading(false);
+              }
+            }}
+            disabled={adLoading}
+            className="w-full inline-flex items-center justify-center gap-2 rounded-md font-display font-semibold h-12 px-6 bg-brand-primary text-white hover:bg-brand-primary/90 disabled:opacity-50 transition-all duration-150"
+          >
+            {adLoading ? (
+              <><Loader2 className="w-5 h-5 animate-spin" /> جاري الكتابة...</>
+            ) : (
+              <><FileText className="w-5 h-5" /> اكتب لي نص اعلاني</>
+            )}
+          </button>
+        </div>
+      )}
+
+      {/* Ad Copy Modal */}
+      {adCopy && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => { setAdCopy(null); setAdCopied(false); }}>
+          <div className="bg-white rounded-lg p-6 max-w-lg w-full mx-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-display font-semibold text-lg text-[#0F172A]">نص إعلاني احترافي</h3>
+              <button
+                onClick={() => { setAdCopy(null); setAdCopied(false); }}
+                className="p-1.5 text-muted hover:bg-black/5 rounded-md"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <p className="text-sm leading-relaxed text-muted whitespace-pre-line mb-4">{adCopy}</p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(adCopy);
+                  setAdCopied(true);
+                  setTimeout(() => setAdCopied(false), 2000);
+                }}
+                className="inline-flex items-center justify-center gap-2 rounded-md font-display font-semibold h-11 px-5 text-sm bg-brand-primary text-white hover:bg-brand-primary/90 transition-all duration-150"
+              >
+                {adCopied ? <><CheckCheck className="w-4 h-4" /> تم النسخ</> : <><Copy className="w-4 h-4" /> نسخ النص</>}
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

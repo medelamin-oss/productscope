@@ -89,14 +89,6 @@ export default function SubscribePage() {
           </div>
         )}
 
-        {region === "dz-sa" && (
-          <div className="flex bg-brand-accent/10 rounded-md p-1 border border-brand-accent/30 w-fit mx-auto mb-6">
-            <span className="px-4 py-2 rounded text-sm font-medium bg-white text-[#0F172A] shadow-sm">
-              السعودية والجزائر
-            </span>
-          </div>
-        )}
-
         <div className="grid gap-6 md:grid-cols-2 mb-8">
           {(["monthly", "yearly"] as const).map((plan) => {
             const active = selected === plan;
