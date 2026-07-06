@@ -5,12 +5,6 @@ import { Check, Loader2, ArrowRight, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Plan = "monthly" | "yearly";
-type Region = "international" | "dz-sa";
-
-const PRICING: Record<Region, { monthly: number; yearly: number; yearlyLabel: string }> = {
-  international: { monthly: 9, yearly: 69, yearlyLabel: "Save $39" },
-  "dz-sa": { monthly: 4, yearly: 29, yearlyLabel: "خاص بالسعودية والجزائر" },
-};
 
 const FEATURES = [
   "Unlimited product analyses",
@@ -19,18 +13,8 @@ const FEATURES = [
   "Arabic & English support",
 ];
 
-function detectRegion(): Region {
-  if (typeof window === "undefined") return "international";
-  try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (tz === "Asia/Riyadh" || tz === "Africa/Algiers") return "dz-sa";
-  } catch { /* empty */ }
-  return "international";
-}
-
 export default function SubscribePage() {
   const [selected, setSelected] = useState<Plan>("monthly");
-  const [region] = useState<Region>(detectRegion);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -93,7 +77,7 @@ export default function SubscribePage() {
           {(["monthly", "yearly"] as const).map((plan) => {
             const active = selected === plan;
             const isMonthly = plan === "monthly";
-            const p = PRICING[region];
+            const price = isMonthly ? 9 : 69;
             return (
               <button
                 key={plan}
@@ -113,13 +97,12 @@ export default function SubscribePage() {
                   {isMonthly ? "Monthly" : "Yearly"}
                 </h3>
                 <p className="text-3xl font-bold text-[#0F172A] mt-3">
-                  ${isMonthly ? p.monthly : p.yearly}
+                  ${price}
                   <span className="text-sm font-normal text-muted">/{isMonthly ? "month" : "year"}</span>
                 </p>
                 {!isMonthly && (
-                  <p className="text-xs mt-1 font-semibold" style={{ color: region === "dz-sa" ? "#F59E0B" : "#16a34a" }}>
-                    {p.yearlyLabel}
-                    {region === "international" && ` — Save $${9 * 12 - 69}`}
+                  <p className="text-xs mt-1 font-semibold text-green-600">
+                    Save $39 compared to monthly
                   </p>
                 )}
                 <ul className="mt-4 space-y-2 text-sm text-muted">
