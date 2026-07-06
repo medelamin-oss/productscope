@@ -2,14 +2,16 @@ import OpenAI from 'openai'
 import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions'
 import { log } from './utils'
 
-const client = new OpenAI({
-  baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: process.env.OPENROUTER_API_KEY,
-  defaultHeaders: {
-    'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL,
-    'X-Title': 'AI Product Analyzer',
-  },
-})
+function getClient() {
+  return new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
+    apiKey: process.env.OPENROUTER_API_KEY,
+    defaultHeaders: {
+      'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL,
+      'X-Title': 'AI Product Analyzer',
+    },
+  })
+}
 
 const SYSTEM_PROMPT = `You are an expert e-commerce and dropshipping product analyst. Analyze the given product and return ONLY valid JSON with these exact fields:
 - product_description: compelling 2-3 paragraph product description
@@ -66,7 +68,7 @@ export async function analyzeProduct(
     })
   }
 
-  const completion = await client.chat.completions.create({
+  const completion = await getClient().chat.completions.create({
     model: 'anthropic/claude-3-haiku',
     messages,
   })
