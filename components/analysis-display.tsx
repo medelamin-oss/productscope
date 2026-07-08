@@ -343,9 +343,9 @@ export function AnalysisDisplay({
             className="w-full inline-flex items-center justify-center gap-2 rounded-md font-display font-semibold h-12 px-6 bg-brand-primary text-white hover:bg-brand-primary/90 disabled:opacity-50 transition-all duration-150"
           >
             {adLoading ? (
-              <><Loader2 className="w-5 h-5 animate-spin" /> جاري الكتابة...</>
+              <><Loader2 className="w-5 h-5 animate-spin" /> {project.language === "ar" ? "جاري الكتابة..." : "Writing..."}</>
             ) : (
-              <><FileText className="w-5 h-5" /> اكتب لي نص اعلاني</>
+              <><FileText className="w-5 h-5" /> {project.language === "ar" ? "اكتب لي نص اعلاني" : "Write Ad Copy"}</>
             )}
           </button>
         </div>
@@ -356,7 +356,7 @@ export function AnalysisDisplay({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => { setAdCopy(null); setAdCopied(false); }}>
           <div className="bg-white rounded-lg p-6 max-w-lg w-full mx-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-display font-semibold text-lg text-[#0F172A]">نص إعلاني احترافي</h3>
+              <h3 className="font-display font-semibold text-lg text-[#0F172A]">{project.language === "ar" ? "نص إعلاني احترافي" : "Professional Ad Copy"}</h3>
               <button
                 onClick={() => { setAdCopy(null); setAdCopied(false); }}
                 className="p-1.5 text-muted hover:bg-black/5 rounded-md"
@@ -374,7 +374,7 @@ export function AnalysisDisplay({
                 }}
                 className="inline-flex items-center justify-center gap-2 rounded-md font-display font-semibold h-11 px-5 text-sm bg-brand-primary text-white hover:bg-brand-primary/90 transition-all duration-150"
               >
-                {adCopied ? <><CheckCheck className="w-4 h-4" /> تم النسخ</> : <><Copy className="w-4 h-4" /> نسخ النص</>}
+                {adCopied ? <><CheckCheck className="w-4 h-4" /> {project.language === "ar" ? "تم النسخ" : "Copied"}</> : <><Copy className="w-4 h-4" /> {project.language === "ar" ? "نسخ النص" : "Copy Text"}</>}
               </button>
             </div>
           </div>
