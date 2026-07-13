@@ -23,22 +23,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid language" }, { status: 400 });
     }
 
-    const { data: profile } = await supabase
-      .from("users")
-      .select("role, trial_used")
-      .eq("id", user.id)
-      .single();
-
-    const isSubscribed = profile?.role === "subscribed";
-    const hasTrialLeft = !profile?.trial_used;
-
-    if (!isSubscribed && !hasTrialLeft) {
-      return NextResponse.json(
-        { error: "Trial used. Please subscribe.", code: "trial_exhausted" },
-        { status: 403 }
-      );
-    }
-
     const { data: project, error: projectError } = await supabase
       .from("projects")
       .insert({
@@ -88,13 +72,6 @@ export async function POST(request: Request) {
           completed_at: new Date().toISOString(),
         })
         .eq("id", result.id);
-
-      if (!isSubscribed && hasTrialLeft) {
-        await supabase
-          .from("users")
-          .update({ trial_used: true })
-          .eq("id", user.id);
-      }
 
       return NextResponse.json({ projectId: project.id, resultId: result.id });
     } catch (aiError) {

@@ -13,15 +13,19 @@ function getClient() {
   })
 }
 
-const SYSTEM_PROMPT = `You are an expert e-commerce and dropshipping product analyst. Analyze the given product and return ONLY valid JSON with these exact fields:
-- product_description: compelling 2-3 paragraph product description
-- ad_headlines: array of 5-10 attention-grabbing ad headlines
-- marketing_hooks: array of 5 emotional or curiosity-driven hooks
-- strengths: array of 3-5 product strengths
-- weaknesses: array of 3-5 marketing angles (ways to market the product positively, reframing any perceived flaws as opportunities)
-- target_audience: detailed ideal customer profile
-- main_objection: the single biggest customer objection
-- objection_response: compelling counter-argument addressing the objection`
+const SYSTEM_PROMPT = `You are a veteran dropshipper and copywriter who's been in the game for years. You've sold everything from kitchen gadgets to phone accessories, and you know what actually moves units. Analyze the given product like you're advising a friend who's about to launch their first store.
+
+CRITICAL: Write like a real human expert — not an AI. Avoid any robotic, template-like language. Every piece of content should feel like it came from a seasoned marketer who's seen it all.
+
+Return ONLY valid JSON with these exact fields:
+- product_description: 2-3 paragraph description written like a professional copywriter crafted it — natural flow, persuasive but not pushy, paints a picture
+- ad_headlines: array of 5-10 headlines that feel like they'd actually stop someone mid-scroll on Facebook or Instagram — no generic "Amazing Product!" nonsense
+- marketing_hooks: array of 5 hooks that tap into real emotions — curiosity, FOMO, pain points, aspiration — written like a copywriter brainstorming with you
+- strengths: array of 3-5 genuine reasons this product could win in the market — be specific, not generic fluff
+- weaknesses: array of 3-5 smart marketing angles — instead of pointing out flaws, show how to spin them into selling points (e.g. "Higher price point? Position it as premium — people associate price with quality")
+- target_audience: a detailed profile of the ideal customer — not just demographics, but what keeps them up at night, what they scroll past, what makes them click "buy"
+- main_objection: the single biggest thing holding buyers back — be brutally honest
+- objection_response: a real, human-sounding counter that addresses the objection like a trusted salesperson would`
 
 export interface AnalysisResponse {
   product_description: string
@@ -56,7 +60,7 @@ export async function analyzeProduct(
     const imageContent: ChatCompletionMessageParam = {
       role: 'user',
       content: [
-        { type: 'text' as const, text: 'Analyze this product image for dropshipping marketing. Identify the product and provide a complete marketing analysis.' },
+        { type: 'text' as const, text: 'Take a look at this product image. What would you tell someone who wants to sell this online? Give me your honest marketing take — the good, the smart angles, and who you\'d target.' },
         { type: 'image_url' as const, image_url: { url: imageBase64 } },
       ],
     }
@@ -64,7 +68,7 @@ export async function analyzeProduct(
   } else {
     messages.push({
       role: 'user',
-      content: `Analyze this product for dropshipping marketing: ${productUrl}`,
+      content: `Check out this product: ${productUrl}. Give me your honest marketing breakdown as if you're advising a friend who wants to sell this. What works, what's the angle, and who's the target?`,
     })
   }
 
