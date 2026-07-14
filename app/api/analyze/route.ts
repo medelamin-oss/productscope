@@ -65,7 +65,7 @@ export async function POST(request: Request) {
           ad_headlines: aiResult.ad_headlines,
           marketing_hooks: aiResult.marketing_hooks,
           strengths: aiResult.strengths,
-          weaknesses: aiResult.weaknesses,
+          weaknesses: aiResult.marketing_angles,
           target_audience: aiResult.target_audience,
           main_objection: aiResult.main_objection,
           objection_response: aiResult.objection_response,

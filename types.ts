@@ -33,7 +33,7 @@ export interface AnalysisResult {
   ad_headlines: string[] | null
   marketing_hooks: string[] | null
   strengths: string[] | null
-  weaknesses: string[] | null  // marketing angles (positive reframe)
+  weaknesses: string[] | null  // stores marketing angles from AI
   target_audience: string | null
   main_objection: string | null
   objection_response: string | null

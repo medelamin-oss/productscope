@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS public.analysis_results (
   ad_headlines      JSONB,
   marketing_hooks   JSONB,
   strengths         JSONB,
-  weaknesses        JSONB,
+  weaknesses          JSONB,
   target_audience   TEXT,
   main_objection    TEXT,
   objection_response TEXT,

@@ -93,7 +93,7 @@ export function generateAnalysisPDF(result: AnalysisResult, productUrl: string, 
   }
 
   if (result.weaknesses?.length) {
-    header('Weaknesses')
+    header('Marketing Angles')
     bulletList(result.weaknesses)
   }
 

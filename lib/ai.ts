@@ -22,7 +22,7 @@ Return ONLY valid JSON with these exact fields:
 - ad_headlines: array of 5-10 headlines that feel like they'd actually stop someone mid-scroll on Facebook or Instagram — no generic "Amazing Product!" nonsense
 - marketing_hooks: array of 5 hooks that tap into real emotions — curiosity, FOMO, pain points, aspiration — written like a copywriter brainstorming with you
 - strengths: array of 3-5 genuine reasons this product could win in the market — be specific, not generic fluff
-- weaknesses: array of 3-5 smart marketing angles — instead of pointing out flaws, show how to spin them into selling points (e.g. "Higher price point? Position it as premium — people associate price with quality")
+- marketing_angles: array of 3-5 smart marketing angles — instead of pointing out flaws, show how to spin them into selling points (e.g. "Higher price point? Position it as premium — people associate price with quality")
 - target_audience: a detailed profile of the ideal customer — not just demographics, but what keeps them up at night, what they scroll past, what makes them click "buy"
 - main_objection: the single biggest thing holding buyers back — be brutally honest
 - objection_response: a real, human-sounding counter that addresses the objection like a trusted salesperson would`
@@ -32,7 +32,7 @@ export interface AnalysisResponse {
   ad_headlines: string[]
   marketing_hooks: string[]
   strengths: string[]
-  weaknesses: string[]
+  marketing_angles: string[]  // rename to marketing_angles in prompt, maps to weaknesses in DB
   target_audience: string
   main_objection: string
   objection_response: string
